@@ -5,7 +5,7 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +24,7 @@ const Signup = () => {
     setPicLoading(true);
     if (!name || !email || !password || !confirmpassword) {
       toast({
-        title: "Please Fill all the Fields",
+        title: "Please Fill all the Feilds",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -138,7 +138,6 @@ const Signup = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
-
       <FormControl id="email" isRequired>
         <FormLabel>Email Address</FormLabel>
         <Input
@@ -147,7 +146,6 @@ const Signup = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
-
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
         <InputGroup size="md">
@@ -163,7 +161,6 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-
       <FormControl id="password" isRequired>
         <FormLabel>Confirm Password</FormLabel>
         <InputGroup size="md">
@@ -179,7 +176,6 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-
       <FormControl id="pic">
         <FormLabel>Upload your Picture</FormLabel>
         <Input
@@ -189,10 +185,9 @@ const Signup = () => {
           onChange={(e) => postDetails(e.target.files[0])}
         />
       </FormControl>
-      
       <Button
         colorScheme="blue"
-        width="20%"
+        width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
         isLoading={picLoading}

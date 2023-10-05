@@ -32,33 +32,17 @@ function Homepage() {
         w="100%"
         m="40px 0 15px 0"
         borderRadius="lg"
-        borderWidth="5px"
-        borderColor="orange"
+        borderWidth="1px"
       >
-        <Text
-          fontSize="4xl"
-          fontFamily="Roboto"
-          textAlign="center"
-          fontWeight="1000"
-          color="orange"
-        >
+        <Text fontSize="4xl" fontFamily="Work sans">
           Chat-Byte
         </Text>
       </Box>
-
-      <Box
-        bg="white"
-        w="100%"
-        p={4}
-        borderRadius="lg"
-        color="black"
-        borderWidth="5px"
-        borderColor="orange"
-      >
-        <Tabs variant="soft-rounded" colorScheme="orange">
+      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+        <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
-            <Tab width="50%" color="black">Login</Tab>
-            <Tab width="50%" color="black">Sign Up</Tab>
+            <Tab>Login</Tab>
+            <Tab>Sign Up</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
@@ -72,6 +56,6 @@ function Homepage() {
       </Box>
     </Container>
   );
-};
+}
 
 export default Homepage;

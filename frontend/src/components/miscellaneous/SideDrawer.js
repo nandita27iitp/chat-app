@@ -17,7 +17,7 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal";
 import { Tooltip } from "@chakra-ui/tooltip";
-//import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
@@ -26,9 +26,9 @@ import { useToast } from "@chakra-ui/toast";
 import ChatLoading from "../ChatLoading";
 import { Spinner } from "@chakra-ui/spinner";
 import ProfileModal from "./ProfileModal";
-//import NotificationBadge from "react-notification-badge";
-//import { Effect } from "react-notification-badge";
-//import { getSender } from "../../config/ChatLogics";
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
+import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
 
@@ -147,8 +147,11 @@ function SideDrawer() {
         <div>
           <Menu>
             <MenuButton p={1}>
-              
-              
+              <NotificationBadge
+                count={notification.length}
+                effect={Effect.SCALE}
+              />
+              <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
             <MenuList pl={2}>
               {!notification.length && "No New Messages"}
@@ -160,13 +163,15 @@ function SideDrawer() {
                     setNotification(notification.filter((n) => n !== notif));
                   }}
                 >
-                  
+                  {notif.chat.isGroupChat
+                    ? `New Message in ${notif.chat.chatName}`
+                    : `New Message from ${getSender(user, notif.chat.users)}`}
                 </MenuItem>
               ))}
             </MenuList>
           </Menu>
           <Menu>
-            <MenuButton as={Button} bg="white" >
+            <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
               <Avatar
                 size="sm"
                 cursor="pointer"

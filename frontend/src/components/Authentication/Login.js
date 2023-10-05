@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
-//import { ChatState } from "../../Context/ChatProvider";
+import { ChatState } from "../../Context/ChatProvider";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -17,13 +17,13 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const history = useHistory();
-  //const { setUser } = ChatState();
+  const { setUser } = ChatState();
 
   const submitHandler = async () => {
     setLoading(true);
     if (!email || !password) {
       toast({
-        title: "Please Fill all the Fields",
+        title: "Please Fill all the Feilds",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -53,7 +53,7 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
-      //setUser(data);
+      setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       history.push("/chats");
@@ -81,7 +81,6 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
-
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
         <InputGroup size="md">
@@ -98,21 +97,19 @@ const Login = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-
       <Button
         colorScheme="blue"
-        width="20%"
+        width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
         isLoading={loading}
       >
         Login
       </Button>
-      
       <Button
         variant="solid"
         colorScheme="red"
-        width="80%"
+        width="100%"
         onClick={() => {
           setEmail("guest@example.com");
           setPassword("123456");
